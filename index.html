@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2 Deutsch – Einstufungstest</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f5f0e8;
+    --cream: #ede6d6;
+    --rule: #c8b99a;
+    --accent: #8b2e12;
+    --green: #2a6b3c;
+    --red: #8b2e12;
+    --gold: #b8870b;
+    --shadow: rgba(26,20,16,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 52px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.03) 40px,
+      rgba(255,255,255,0.03) 41px
+    );
+  }
+  .header-kicker {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  header h1 em {
+    font-style: italic;
+    color: #d4a96a;
+  }
+  .header-rule {
+    width: 64px; height: 2px;
+    background: var(--gold);
+    margin: 20px auto;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: #a09080;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT ── */
+  .test-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    background: white;
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent);
+    margin-bottom: 40px;
+    padding: 36px 40px;
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+  @media(max-width:600px){ .section { padding: 24px 18px; } }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+  }
+
+  /* ── INSTRUCTIONS BOX ── */
+  .instr {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #4a3f30;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .instr p + p { margin-top: 6px; }
+
+  /* ── PASSAGE ── */
+  .passage {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+  .passage strong { font-style: normal; display: block; margin-bottom: 6px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); }
+
+  /* ── QUESTIONS ── */
+  .question-block {
+    border-bottom: 1px solid #ece5d8;
+    padding: 16px 0;
+  }
+  .question-block:last-child { border-bottom: none; }
+
+  .q-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .q-text {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  /* radio options */
+  .options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt-label {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 7px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s, border-color 0.15s;
+    border-radius: 2px;
+    user-select: none;
+  }
+  .opt-label:hover { background: #e8dfc8; border-color: #a09080; }
+  .opt-label input[type=radio] { accent-color: var(--accent); }
+
+  /* RF horizontal */
+  .rf-options { display: flex; gap: 12px; margin-top: 6px; }
+
+  /* ── HÖREN TABLE ── */
+  .horen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  @media(max-width:520px){ .horen-grid { grid-template-columns: 1fr; } }
+  .horen-col h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  .horen-col ul { list-style: none; }
+  .horen-col li { padding: 3px 0; font-size: 14px; }
+  .horen-col li span { font-weight: 700; color: var(--accent); margin-right: 6px; }
+
+  .horen-answers { margin-top: 10px; }
+  .horen-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid #ece5d8;
+  }
+  .horen-row:last-child { border-bottom: none; }
+  .horen-row .h-label { font-weight: 700; min-width: 130px; font-size: 14px; }
+  .horen-row select {
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  /* ── EXAMPLE ROW ── */
+  .example-row {
+    background: var(--cream);
+    border: 1px dashed var(--rule);
+    padding: 10px 16px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #5a4e3c;
+  }
+  .example-row strong { color: var(--accent); }
+
+  /* ── AUDIO ── */
+  .audio-block {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: #5a4e3c;
+  }
+  .audio-block audio { flex: 1; height: 34px; }
+
+  /* ── MATCHING ── */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  @media(max-width:520px){ .match-grid { grid-template-columns: 1fr; } }
+  .match-col h4 {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px; margin-bottom: 10px;
+  }
+  .match-col ul { list-style: none; }
+  .match-col li { padding: 3px 0; font-size: 14px; }
+  .match-col li span { font-weight: 700; color: var(--accent); margin-right: 6px; }
+
+  .match-rows { }
+  .match-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid #ece5d8;
+    font-size: 14px;
+  }
+  .match-row:last-child { border-bottom: none; }
+  .match-row .m-left { min-width: 200px; flex: 1; }
+  .match-row .m-left b { color: var(--accent); margin-right: 6px; }
+  .match-row select {
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    padding: 6px 12px;
+    font-family: inherit; font-size: 14px;
+    color: var(--ink); cursor: pointer; border-radius: 2px;
+    min-width: 80px;
+  }
+
+  /* ── WRITING ── */
+  .writing-prompt {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    font-size: 14.5px;
+  }
+  .writing-prompt ul { margin: 10px 0 0 18px; }
+  .writing-prompt li { margin-bottom: 4px; }
+  .writing-area textarea {
+    width: 100%;
+    min-height: 160px;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    resize: vertical;
+    outline: none;
+    line-height: 1.8;
+  }
+  .writing-note {
+    font-size: 12.5px; color: #7a6a55; margin-top: 8px; font-style: italic;
+  }
+
+  /* ── GRAMMER INPUT ── */
+  .blank-input {
+    border: none; border-bottom: 1.5px solid var(--ink);
+    background: transparent;
+    width: 80px; padding: 2px 6px;
+    font-family: inherit; font-size: 15px;
+    color: var(--ink); outline: none;
+    margin: 0 4px;
+    text-align: center;
+  }
+
+  /* ── SUBMIT BUTTON ── */
+  .submit-area {
+    text-align: center;
+    margin: 48px 0 20px;
+  }
+  .btn-submit {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 18px 52px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 18px rgba(26,20,16,0.25);
+  }
+  .btn-submit:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  /* ── RESULTS ── */
+  #results { display: none; }
+  #results.visible { display: block; }
+
+  .results-header {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 40px 24px 32px;
+    margin-bottom: 32px;
+  }
+  .results-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; margin-bottom: 8px;
+  }
+  .score-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: #d4a96a;
+    line-height: 1;
+  }
+  .score-label { font-size: 13px; color: #a09080; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 16px;
+    max-width: 860px; margin: 0 auto 40px;
+    padding: 0 24px;
+  }
+  .score-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--gold);
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .score-card .sc-section { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #7a6a55; margin-bottom: 6px; }
+  .score-card .sc-score { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--ink); }
+  .score-card .sc-max { font-size: 12px; color: #a09080; }
+
+  /* ── CORRECT / WRONG HIGHLIGHT ── */
+  .q-result { font-size: 12.5px; font-weight: 700; margin-top: 8px; padding: 4px 10px; display: inline-block; }
+  .q-result.correct { background: #d4edda; color: #155724; border: 1px solid #b8dcc6; }
+  .q-result.wrong { background: #f8d7da; color: #721c24; border: 1px solid #f1b0b7; }
+
+  .opt-label.correct-ans { background: #d4edda !important; border-color: #5cb87c !important; color: #155724; }
+  .opt-label.wrong-ans { background: #f8d7da !important; border-color: #e07a80 !important; color: #721c24; }
+
+  select.correct-ans { background: #d4edda !important; border-color: #5cb87c !important; color: #155724 !important; }
+  select.wrong-ans { background: #f8d7da !important; border-color: #e07a80 !important; color: #721c24 !important; }
+
+  .writing-manual-note {
+    background: #fff8e1;
+    border: 1px solid #ffd54f;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #5d4037;
+    margin-top: 8px;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="header-kicker">Einstufungstest · Niveau A2</p>
+  <h1>Deutsch <em>A2</em></h1>
+  <div class="header-rule"></div>
+  <p class="header-sub">Sprachkompetenzprüfung · Placement Examination</p>
+</header>
+
+<div class="test-wrapper">
+
+<!-- ══════════════════════════════════════════
+     HÖREN
+══════════════════════════════════════════ -->
+<div class="section" id="sec-horen">
+  <p class="section-label">Teil 1</p>
+  <h2 class="section-title">Hören</h2>
+
+  <div class="instr">
+    <p>Sie hören ein Gespräch. Zu diesem Gespräch gibt es fünf Aufgaben.</p>
+    <p>Ordnen Sie zu und notieren Sie den Buchstaben. Sie hören den Text zweimal.</p>
+  </div>
+
+  <div class="audio-block">
+    🔊 <strong>Gespräch (Audio):</strong>
+    <audio controls src="SES.mp3">Ihr Browser unterstützt kein Audio.</audio>
+  </div>
+
+  <div class="horen-grid">
+    <div class="horen-col">
+      <h4>Wann?</h4>
+      <ul>
+        <li><span>0</span> Samstagvormittag <em>(Beispiel)</em></li>
+        <li><span>11</span> Samstagnachmittag</li>
+        <li><span>12</span> Samstagabend</li>
+        <li><span>13</span> Sonntagvormittag</li>
+        <li><span>14</span> Sonntagnachmittag</li>
+        <li><span>15</span> Sonntagabend</li>
+      </ul>
+    </div>
+    <div class="horen-col">
+      <h4>Was?</h4>
+      <ul>
+        <li><span>A</span> einkaufen</li>
+        <li><span>B</span> schwimmen gehen</li>
+        <li><span>C</span> ins Restaurant gehen</li>
+        <li><span>D</span> fernsehen</li>
+        <li><span>E</span> Rad fahren</li>
+        <li><span>F</span> Freunde besuchen</li>
+        <li><span>G</span> lange schlafen</li>
+        <li><span>H</span> ins Kino gehen</li>
+        <li><span>I</span> tanzen gehen</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="example-row">
+    <strong>Beispiel 0:</strong> Samstagvormittag → <strong>A</strong> (einkaufen)
+  </div>
+
+  <div class="horen-answers">
+    <div class="horen-row">
+      <span class="h-label">11 — Samstagnachmittag</span>
+      <select id="h11" data-q="h11">
+        <option value="">— wählen —</option>
+        <option value="A">A – einkaufen</option>
+        <option value="B">B – schwimmen gehen</option>
+        <option value="C">C – ins Restaurant gehen</option>
+        <option value="D">D – fernsehen</option>
+        <option value="E">E – Rad fahren</option>
+        <option value="F">F – Freunde besuchen</option>
+        <option value="G">G – lange schlafen</option>
+        <option value="H">H – ins Kino gehen</option>
+        <option value="I">I – tanzen gehen</option>
+      </select>
+    </div>
+    <div class="horen-row">
+      <span class="h-label">12 — Samstagabend</span>
+      <select id="h12" data-q="h12">
+        <option value="">— wählen —</option>
+        <option value="A">A – einkaufen</option>
+        <option value="B">B – schwimmen gehen</option>
+        <option value="C">C – ins Restaurant gehen</option>
+        <option value="D">D – fernsehen</option>
+        <option value="E">E – Rad fahren</option>
+        <option value="F">F – Freunde besuchen</option>
+        <option value="G">G – lange schlafen</option>
+        <option value="H">H – ins Kino gehen</option>
+        <option value="I">I – tanzen gehen</option>
+      </select>
+    </div>
+    <div class="horen-row">
+      <span class="h-label">13 — Sonntagvormittag</span>
+      <select id="h13" data-q="h13">
+        <option value="">— wählen —</option>
+        <option value="A">A – einkaufen</option>
+        <option value="B">B – schwimmen gehen</option>
+        <option value="C">C – ins Restaurant gehen</option>
+        <option value="D">D – fernsehen</option>
+        <option value="E">E – Rad fahren</option>
+        <option value="F">F – Freunde besuchen</option>
+        <option value="G">G – lange schlafen</option>
+        <option value="H">H – ins Kino gehen</option>
+        <option value="I">I – tanzen gehen</option>
+      </select>
+    </div>
+    <div class="horen-row">
+      <span class="h-label">14 — Sonntagnachmittag</span>
+      <select id="h14" data-q="h14">
+        <option value="">— wählen —</option>
+        <option value="A">A – einkaufen</option>
+        <option value="B">B – schwimmen gehen</option>
+        <option value="C">C – ins Restaurant gehen</option>
+        <option value="D">D – fernsehen</option>
+        <option value="E">E – Rad fahren</option>
+        <option value="F">F – Freunde besuchen</option>
+        <option value="G">G – lange schlafen</option>
+        <option value="H">H – ins Kino gehen</option>
+        <option value="I">I – tanzen gehen</option>
+      </select>
+    </div>
+    <div class="horen-row">
+      <span class="h-label">15 — Sonntagabend</span>
+      <select id="h15" data-q="h15">
+        <option value="">— wählen —</option>
+        <option value="A">A – einkaufen</option>
+        <option value="B">B – schwimmen gehen</option>
+        <option value="C">C – ins Restaurant gehen</option>
+        <option value="D">D – fernsehen</option>
+        <option value="E">E – Rad fahren</option>
+        <option value="F">F – Freunde besuchen</option>
+        <option value="G">G – lange schlafen</option>
+        <option value="H">H – ins Kino gehen</option>
+        <option value="I">I – tanzen gehen</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     LESEN – Richtig / Falsch
+══════════════════════════════════════════ -->
+<div class="section" id="sec-lesen-rf">
+  <p class="section-label">Teil 2</p>
+  <h2 class="section-title">Lesen – Richtig oder Falsch</h2>
+  <div class="instr">
+    <p>Lesen Sie die Texte und entscheiden Sie: Ist die Aussage richtig (R) oder falsch (F)?</p>
+  </div>
+
+  <div class="passage">
+    <strong>Text 1 – Brief</strong>
+    Hallo Sarah,<br>
+    ich arbeite jetzt seit drei Monaten in Köln. Die Arbeit gefällt mir sehr gut. Ich arbeite in einem kleinen Café im Stadtzentrum. Am Wochenende habe ich frei und treffe Freunde oder gehe ins Kino.<br><br>
+    Viele Grüße, Anna
+  </div>
+
+  <!-- Q1–Q5 -->
+  <div class="question-block" id="qblock-rf1">
+    <p class="q-num">Frage 1</p>
+    <p class="q-text">Anna arbeitet seit drei Jahren in Köln.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf1" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf1" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf2">
+    <p class="q-num">Frage 2</p>
+    <p class="q-text">Anna arbeitet in einem Café.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf2" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf2" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf3">
+    <p class="q-num">Frage 3</p>
+    <p class="q-text">Das Café ist im Stadtzentrum.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf3" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf3" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf4">
+    <p class="q-num">Frage 4</p>
+    <p class="q-text">Anna arbeitet auch am Wochenende.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf4" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf4" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf5">
+    <p class="q-num">Frage 5</p>
+    <p class="q-text">Am Wochenende trifft Anna Freunde.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf5" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf5" value="F"> Falsch</label>
+    </div>
+  </div>
+
+  <div class="passage" style="margin-top:28px">
+    <strong>Text 2 – Anzeige</strong>
+    <strong style="font-style:normal;display:block;margin-top:8px">Stadtbibliothek</strong>
+    Montag – Freitag: 9:00 – 19:00<br>
+    Samstag: 10:00 – 14:00<br>
+    Sonntag: <strong>geschlossen</strong>
+  </div>
+
+  <!-- Q6–Q10 -->
+  <div class="question-block" id="qblock-rf6">
+    <p class="q-num">Frage 6</p>
+    <p class="q-text">Die Bibliothek ist am Sonntag offen.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf6" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf6" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf7">
+    <p class="q-num">Frage 7</p>
+    <p class="q-text">Am Samstag öffnet die Bibliothek um 10 Uhr.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf7" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf7" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf8">
+    <p class="q-num">Frage 8</p>
+    <p class="q-text">Von Montag bis Freitag ist die Bibliothek bis 19 Uhr geöffnet.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf8" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf8" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf9">
+    <p class="q-num">Frage 9</p>
+    <p class="q-text">Die Bibliothek ist jeden Tag offen.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf9" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf9" value="F"> Falsch</label>
+    </div>
+  </div>
+  <div class="question-block" id="qblock-rf10">
+    <p class="q-num">Frage 10</p>
+    <p class="q-text">Am Samstag schließt sie um 14 Uhr.</p>
+    <div class="options rf-options">
+      <label class="opt-label"><input type="radio" name="rf10" value="R"> Richtig</label>
+      <label class="opt-label"><input type="radio" name="rf10" value="F"> Falsch</label>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     LESEN – Multiple Choice
+══════════════════════════════════════════ -->
+<div class="section" id="sec-lesen-mc">
+  <p class="section-label">Teil 3</p>
+  <h2 class="section-title">Lesen – Multiple Choice</h2>
+  <div class="instr">
+    <p>Wählen Sie die richtige Antwort (A, B oder C).</p>
+  </div>
+
+  <!-- MC 1 -->
+  <div class="question-block" id="qblock-mc1">
+    <p class="q-num">Frage 1</p>
+    <p class="q-text">Wo arbeitet Anna?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc1" value="A"> A &nbsp; im Café</label>
+      <label class="opt-label"><input type="radio" name="mc1" value="B"> B &nbsp; im Krankenhaus</label>
+      <label class="opt-label"><input type="radio" name="mc1" value="C"> C &nbsp; im Hotel</label>
+    </div>
+  </div>
+  <!-- MC 2 -->
+  <div class="question-block" id="qblock-mc2">
+    <p class="q-num">Frage 2</p>
+    <p class="q-text">Wann hat Anna frei?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc2" value="A"> A &nbsp; am Wochenende</label>
+      <label class="opt-label"><input type="radio" name="mc2" value="B"> B &nbsp; am Montag</label>
+      <label class="opt-label"><input type="radio" name="mc2" value="C"> C &nbsp; am Mittwoch</label>
+    </div>
+  </div>
+  <!-- MC 3 -->
+  <div class="question-block" id="qblock-mc3">
+    <p class="q-num">Frage 3</p>
+    <p class="q-text">Wo ist das Café?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc3" value="A"> A &nbsp; im Zentrum</label>
+      <label class="opt-label"><input type="radio" name="mc3" value="B"> B &nbsp; im Park</label>
+      <label class="opt-label"><input type="radio" name="mc3" value="C"> C &nbsp; im Bahnhof</label>
+    </div>
+  </div>
+  <!-- MC 4 -->
+  <div class="question-block" id="qblock-mc4">
+    <p class="q-num">Frage 4</p>
+    <p class="q-text">Was macht Anna am Wochenende?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc4" value="A"> A &nbsp; Sie arbeitet</label>
+      <label class="opt-label"><input type="radio" name="mc4" value="B"> B &nbsp; Sie trifft Freunde</label>
+      <label class="opt-label"><input type="radio" name="mc4" value="C"> C &nbsp; Sie fährt nach Hause</label>
+    </div>
+  </div>
+  <!-- MC 5 -->
+  <div class="question-block" id="qblock-mc5">
+    <p class="q-num">Frage 5</p>
+    <p class="q-text">Wann öffnet die Bibliothek am Montag?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc5" value="A"> A &nbsp; 8 Uhr</label>
+      <label class="opt-label"><input type="radio" name="mc5" value="B"> B &nbsp; 9 Uhr</label>
+      <label class="opt-label"><input type="radio" name="mc5" value="C"> C &nbsp; 10 Uhr</label>
+    </div>
+  </div>
+  <!-- MC 6 -->
+  <div class="question-block" id="qblock-mc6">
+    <p class="q-num">Frage 6</p>
+    <p class="q-text">Wann schließt die Bibliothek am Samstag?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc6" value="A"> A &nbsp; 12 Uhr</label>
+      <label class="opt-label"><input type="radio" name="mc6" value="B"> B &nbsp; 14 Uhr</label>
+      <label class="opt-label"><input type="radio" name="mc6" value="C"> C &nbsp; 18 Uhr</label>
+    </div>
+  </div>
+  <!-- MC 7 -->
+  <div class="question-block" id="qblock-mc7">
+    <p class="q-num">Frage 7</p>
+    <p class="q-text">Wo kann man Bücher lesen?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc7" value="A"> A &nbsp; in der Bibliothek</label>
+      <label class="opt-label"><input type="radio" name="mc7" value="B"> B &nbsp; im Kino</label>
+      <label class="opt-label"><input type="radio" name="mc7" value="C"> C &nbsp; im Restaurant</label>
+    </div>
+  </div>
+  <!-- MC 8 -->
+  <div class="question-block" id="qblock-mc8">
+    <p class="q-num">Frage 8</p>
+    <p class="q-text">Was macht man im Kino?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc8" value="A"> A &nbsp; Filme sehen</label>
+      <label class="opt-label"><input type="radio" name="mc8" value="B"> B &nbsp; Bücher lesen</label>
+      <label class="opt-label"><input type="radio" name="mc8" value="C"> C &nbsp; Sport machen</label>
+    </div>
+  </div>
+  <!-- MC 9 -->
+  <div class="question-block" id="qblock-mc9">
+    <p class="q-num">Frage 9</p>
+    <p class="q-text">Wo kauft man Brot?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc9" value="A"> A &nbsp; im Supermarkt</label>
+      <label class="opt-label"><input type="radio" name="mc9" value="B"> B &nbsp; in der Bäckerei</label>
+      <label class="opt-label"><input type="radio" name="mc9" value="C"> C &nbsp; im Krankenhaus</label>
+    </div>
+  </div>
+  <!-- MC 10 -->
+  <div class="question-block" id="qblock-mc10">
+    <p class="q-num">Frage 10</p>
+    <p class="q-text">Wo arbeitet ein Arzt?</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="mc10" value="A"> A &nbsp; im Krankenhaus</label>
+      <label class="opt-label"><input type="radio" name="mc10" value="B"> B &nbsp; im Hotel</label>
+      <label class="opt-label"><input type="radio" name="mc10" value="C"> C &nbsp; im Kino</label>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     GRAMMATIK
+══════════════════════════════════════════ -->
+<div class="section" id="sec-gram">
+  <p class="section-label">Teil 4</p>
+  <h2 class="section-title">Grammatik</h2>
+  <div class="instr">
+    <p>Wählen Sie die richtige Antwort (A, B oder C).</p>
+  </div>
+
+  <!-- G1 -->
+  <div class="question-block" id="qblock-g1">
+    <p class="q-num">Frage 1</p>
+    <p class="q-text">Ich ___ gestern krank.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g1" value="A"> A &nbsp; war</label>
+      <label class="opt-label"><input type="radio" name="g1" value="B"> B &nbsp; bin</label>
+      <label class="opt-label"><input type="radio" name="g1" value="C"> C &nbsp; habe</label>
+    </div>
+  </div>
+  <!-- G2 -->
+  <div class="question-block" id="qblock-g2">
+    <p class="q-num">Frage 2</p>
+    <p class="q-text">Wir ___ morgen nach Berlin.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g2" value="A"> A &nbsp; fahren</label>
+      <label class="opt-label"><input type="radio" name="g2" value="B"> B &nbsp; fährt</label>
+      <label class="opt-label"><input type="radio" name="g2" value="C"> C &nbsp; fahre</label>
+    </div>
+  </div>
+  <!-- G3 -->
+  <div class="question-block" id="qblock-g3">
+    <p class="q-num">Frage 3</p>
+    <p class="q-text">Er ___ seit zwei Jahren Deutsch.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g3" value="A"> A &nbsp; lernt</label>
+      <label class="opt-label"><input type="radio" name="g3" value="B"> B &nbsp; lernen</label>
+      <label class="opt-label"><input type="radio" name="g3" value="C"> C &nbsp; lerne</label>
+    </div>
+  </div>
+  <!-- G4 -->
+  <div class="question-block" id="qblock-g4">
+    <p class="q-num">Frage 4</p>
+    <p class="q-text">Ich habe ___ neuen Laptop gekauft.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g4" value="A"> A &nbsp; ein</label>
+      <label class="opt-label"><input type="radio" name="g4" value="B"> B &nbsp; einen</label>
+      <label class="opt-label"><input type="radio" name="g4" value="C"> C &nbsp; eine</label>
+    </div>
+  </div>
+  <!-- G5 -->
+  <div class="question-block" id="qblock-g5">
+    <p class="q-num">Frage 5</p>
+    <p class="q-text">Das ist ___ Tasche.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g5" value="A"> A &nbsp; mein</label>
+      <label class="opt-label"><input type="radio" name="g5" value="B"> B &nbsp; meine</label>
+      <label class="opt-label"><input type="radio" name="g5" value="C"> C &nbsp; meinen</label>
+    </div>
+  </div>
+  <!-- G6 -->
+  <div class="question-block" id="qblock-g6">
+    <p class="q-num">Frage 6</p>
+    <p class="q-text">Wir gehen ___ Kino.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g6" value="A"> A &nbsp; ins</label>
+      <label class="opt-label"><input type="radio" name="g6" value="B"> B &nbsp; im</label>
+      <label class="opt-label"><input type="radio" name="g6" value="C"> C &nbsp; am</label>
+    </div>
+  </div>
+  <!-- G7 -->
+  <div class="question-block" id="qblock-g7">
+    <p class="q-num">Frage 7</p>
+    <p class="q-text">Sie ___ gestern zu Hause.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g7" value="A"> A &nbsp; war</label>
+      <label class="opt-label"><input type="radio" name="g7" value="B"> B &nbsp; waren</label>
+      <label class="opt-label"><input type="radio" name="g7" value="C"> C &nbsp; ist</label>
+    </div>
+  </div>
+  <!-- G8 -->
+  <div class="question-block" id="qblock-g8">
+    <p class="q-num">Frage 8</p>
+    <p class="q-text">Ich komme später, ___ ich arbeiten muss.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g8" value="A"> A &nbsp; weil</label>
+      <label class="opt-label"><input type="radio" name="g8" value="B"> B &nbsp; und</label>
+      <label class="opt-label"><input type="radio" name="g8" value="C"> C &nbsp; oder</label>
+    </div>
+  </div>
+  <!-- G9 -->
+  <div class="question-block" id="qblock-g9">
+    <p class="q-num">Frage 9</p>
+    <p class="q-text">Er fährt ___ dem Bus zur Arbeit.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g9" value="A"> A &nbsp; mit</label>
+      <label class="opt-label"><input type="radio" name="g9" value="B"> B &nbsp; von</label>
+      <label class="opt-label"><input type="radio" name="g9" value="C"> C &nbsp; bei</label>
+    </div>
+  </div>
+  <!-- G10 -->
+  <div class="question-block" id="qblock-g10">
+    <p class="q-num">Frage 10</p>
+    <p class="q-text">Wir wohnen ___ Deutschland.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g10" value="A"> A &nbsp; in</label>
+      <label class="opt-label"><input type="radio" name="g10" value="B"> B &nbsp; auf</label>
+      <label class="opt-label"><input type="radio" name="g10" value="C"> C &nbsp; an</label>
+    </div>
+  </div>
+  <!-- G11 -->
+  <div class="question-block" id="qblock-g11">
+    <p class="q-num">Frage 11</p>
+    <p class="q-text">Ich ___ schon gegessen.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g11" value="A"> A &nbsp; habe</label>
+      <label class="opt-label"><input type="radio" name="g11" value="B"> B &nbsp; bin</label>
+      <label class="opt-label"><input type="radio" name="g11" value="C"> C &nbsp; hatte</label>
+    </div>
+  </div>
+  <!-- G12 -->
+  <div class="question-block" id="qblock-g12">
+    <p class="q-num">Frage 12</p>
+    <p class="q-text">Meine Schwester ___ sehr gut Deutsch.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g12" value="A"> A &nbsp; spricht</label>
+      <label class="opt-label"><input type="radio" name="g12" value="B"> B &nbsp; sprechen</label>
+      <label class="opt-label"><input type="radio" name="g12" value="C"> C &nbsp; sprichst</label>
+    </div>
+  </div>
+  <!-- G13 -->
+  <div class="question-block" id="qblock-g13">
+    <p class="q-num">Frage 13</p>
+    <p class="q-text">Wir gehen heute ___ Restaurant.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g13" value="A"> A &nbsp; im</label>
+      <label class="opt-label"><input type="radio" name="g13" value="B"> B &nbsp; ins</label>
+      <label class="opt-label"><input type="radio" name="g13" value="C"> C &nbsp; zu</label>
+    </div>
+  </div>
+  <!-- G14 -->
+  <div class="question-block" id="qblock-g14">
+    <p class="q-num">Frage 14</p>
+    <p class="q-text">Gestern ___ ich lange gearbeitet.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g14" value="A"> A &nbsp; habe</label>
+      <label class="opt-label"><input type="radio" name="g14" value="B"> B &nbsp; bin</label>
+      <label class="opt-label"><input type="radio" name="g14" value="C"> C &nbsp; war</label>
+    </div>
+  </div>
+  <!-- G15 -->
+  <div class="question-block" id="qblock-g15">
+    <p class="q-num">Frage 15</p>
+    <p class="q-text">Ich bleibe zu Hause, ___ ich krank bin.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="g15" value="A"> A &nbsp; weil</label>
+      <label class="opt-label"><input type="radio" name="g15" value="B"> B &nbsp; und</label>
+      <label class="opt-label"><input type="radio" name="g15" value="C"> C &nbsp; aber</label>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     WORTSCHATZ
+══════════════════════════════════════════ -->
+<div class="section" id="sec-wort">
+  <p class="section-label">Teil 5</p>
+  <h2 class="section-title">Wortschatz</h2>
+  <div class="instr">
+    <p>Wählen Sie das richtige Wort (A, B oder C).</p>
+  </div>
+
+  <!-- W1 -->
+  <div class="question-block" id="qblock-w1">
+    <p class="q-num">Frage 1</p>
+    <p class="q-text">Ich ___ jeden Morgen Kaffee.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w1" value="A"> A &nbsp; trinke</label>
+      <label class="opt-label"><input type="radio" name="w1" value="B"> B &nbsp; esse</label>
+      <label class="opt-label"><input type="radio" name="w1" value="C"> C &nbsp; fahre</label>
+    </div>
+  </div>
+  <!-- W2 -->
+  <div class="question-block" id="qblock-w2">
+    <p class="q-num">Frage 2</p>
+    <p class="q-text">Der Bus fährt um ___ Uhr.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w2" value="A"> A &nbsp; Zeit</label>
+      <label class="opt-label"><input type="radio" name="w2" value="B"> B &nbsp; Stunde</label>
+      <label class="opt-label"><input type="radio" name="w2" value="C"> C &nbsp; sieben</label>
+    </div>
+  </div>
+  <!-- W3 -->
+  <div class="question-block" id="qblock-w3">
+    <p class="q-num">Frage 3</p>
+    <p class="q-text">Ich kaufe Brot in der ___.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w3" value="A"> A &nbsp; Apotheke</label>
+      <label class="opt-label"><input type="radio" name="w3" value="B"> B &nbsp; Bäckerei</label>
+      <label class="opt-label"><input type="radio" name="w3" value="C"> C &nbsp; Schule</label>
+    </div>
+  </div>
+  <!-- W4 -->
+  <div class="question-block" id="qblock-w4">
+    <p class="q-num">Frage 4</p>
+    <p class="q-text">Mein Vater arbeitet im ___.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w4" value="A"> A &nbsp; Krankenhaus</label>
+      <label class="opt-label"><input type="radio" name="w4" value="B"> B &nbsp; Brot</label>
+      <label class="opt-label"><input type="radio" name="w4" value="C"> C &nbsp; Tisch</label>
+    </div>
+  </div>
+  <!-- W5 -->
+  <div class="question-block" id="qblock-w5">
+    <p class="q-num">Frage 5</p>
+    <p class="q-text">Am Wochenende ___ ich Freunde.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w5" value="A"> A &nbsp; besuche</label>
+      <label class="opt-label"><input type="radio" name="w5" value="B"> B &nbsp; fahre</label>
+      <label class="opt-label"><input type="radio" name="w5" value="C"> C &nbsp; esse</label>
+    </div>
+  </div>
+  <!-- W6 -->
+  <div class="question-block" id="qblock-w6">
+    <p class="q-num">Frage 6</p>
+    <p class="q-text">Im Sommer gehe ich gern ___.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w6" value="A"> A &nbsp; schwimmen</label>
+      <label class="opt-label"><input type="radio" name="w6" value="B"> B &nbsp; schreiben</label>
+      <label class="opt-label"><input type="radio" name="w6" value="C"> C &nbsp; lernen</label>
+    </div>
+  </div>
+  <!-- W7 -->
+  <div class="question-block" id="qblock-w7">
+    <p class="q-num">Frage 7</p>
+    <p class="q-text">Ich wohne ___ Berlin.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w7" value="A"> A &nbsp; in</label>
+      <label class="opt-label"><input type="radio" name="w7" value="B"> B &nbsp; auf</label>
+      <label class="opt-label"><input type="radio" name="w7" value="C"> C &nbsp; bei</label>
+    </div>
+  </div>
+  <!-- W8 -->
+  <div class="question-block" id="qblock-w8">
+    <p class="q-num">Frage 8</p>
+    <p class="q-text">Die Kinder spielen im ___.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w8" value="A"> A &nbsp; Park</label>
+      <label class="opt-label"><input type="radio" name="w8" value="B"> B &nbsp; Tisch</label>
+      <label class="opt-label"><input type="radio" name="w8" value="C"> C &nbsp; Büro</label>
+    </div>
+  </div>
+  <!-- W9 -->
+  <div class="question-block" id="qblock-w9">
+    <p class="q-num">Frage 9</p>
+    <p class="q-text">Heute ist ___.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w9" value="A"> A &nbsp; Montag</label>
+      <label class="opt-label"><input type="radio" name="w9" value="B"> B &nbsp; Tisch</label>
+      <label class="opt-label"><input type="radio" name="w9" value="C"> C &nbsp; Brot</label>
+    </div>
+  </div>
+  <!-- W10 -->
+  <div class="question-block" id="qblock-w10">
+    <p class="q-num">Frage 10</p>
+    <p class="q-text">Ich gehe früh ___ Bett.</p>
+    <div class="options">
+      <label class="opt-label"><input type="radio" name="w10" value="A"> A &nbsp; ins</label>
+      <label class="opt-label"><input type="radio" name="w10" value="B"> B &nbsp; im</label>
+      <label class="opt-label"><input type="radio" name="w10" value="C"> C &nbsp; am</label>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SCHREIBEN
+══════════════════════════════════════════ -->
+<div class="section" id="sec-schreiben">
+  <p class="section-label">Teil 6</p>
+  <h2 class="section-title">Schreiben</h2>
+  <div class="instr">
+    <p>Schreiben Sie eine kurze E-Mail (ca. 40 Wörter). Diese Aufgabe wird nicht automatisch bewertet.</p>
+  </div>
+
+  <div class="writing-prompt">
+    <strong>Aufgabe:</strong><br>
+    Sie haben am Montag um 14 Uhr einen Termin mit einem Kunden. Leider müssen Sie diesen Termin um zwei Stunden verschieben.<br><br>
+    Schreiben Sie dem Kunden Herrn Groß eine kurze E-Mail.<br>
+    Wählen Sie <strong>drei Punkte</strong> und schreiben Sie 1–2 Sätze zu jedem Punkt:
+    <ul>
+      <li>Warum verschieben?</li>
+      <li>Neuer Termin</li>
+      <li>Bitte um Antwort</li>
+      <li>Antwort auch telefonisch – wann erreichbar?</li>
+    </ul>
+    <br><em>Schreiben Sie etwa 40 Wörter.</em>
+  </div>
+
+  <div class="writing-area">
+    <textarea id="writing-response" placeholder="Sehr geehrter Herr Groß, ..."></textarea>
+    <p class="writing-note">⚠️ Die Schreibaufgabe wird manuell bewertet und ist nicht Teil der automatischen Auswertung.</p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SUBMIT BUTTON
+══════════════════════════════════════════ -->
+<div class="submit-area">
+  <button class="btn-submit" onclick="submitTest()">
+    Testi Bitir &nbsp;/&nbsp; Test abschließen
+  </button>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     RESULTS
+══════════════════════════════════════════ -->
+<div id="results">
+  <div class="results-header">
+    <h2>Testergebnis · Test Sonucu</h2>
+    <div class="score-big" id="score-pct">–%</div>
+    <p class="score-label" id="score-fraction">– / – Punkte</p>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <p class="sc-section">Hören</p>
+      <p class="sc-score" id="sc-horen">–</p>
+      <p class="sc-max">/ 5 Punkte</p>
+    </div>
+    <div class="score-card">
+      <p class="sc-section">Lesen R/F</p>
+      <p class="sc-score" id="sc-rf">–</p>
+      <p class="sc-max">/ 10 Punkte</p>
+    </div>
+    <div class="score-card">
+      <p class="sc-section">Lesen MC</p>
+      <p class="sc-score" id="sc-mc">–</p>
+      <p class="sc-max">/ 10 Punkte</p>
+    </div>
+    <div class="score-card">
+      <p class="sc-section">Grammatik</p>
+      <p class="sc-score" id="sc-gram">–</p>
+      <p class="sc-max">/ 15 Punkte</p>
+    </div>
+    <div class="score-card">
+      <p class="sc-section">Wortschatz</p>
+      <p class="sc-score" id="sc-wort">–</p>
+      <p class="sc-max">/ 10 Punkte</p>
+    </div>
+    <div class="score-card">
+      <p class="sc-section">Schreiben</p>
+      <p class="sc-score">–</p>
+      <p class="sc-max">Manuel Değerlendirme</p>
+    </div>
+  </div>
+
+  <div style="max-width:860px;margin:0 auto;padding:0 24px 60px;">
+    <div class="writing-manual-note">
+      ✏️ <strong>Schreiben (Yazma):</strong> Bu bölüm otomatik değerlendirilmez. Öğretmen tarafından manuel olarak puanlanacaktır.
+    </div>
+  </div>
+</div>
+
+</div><!-- /test-wrapper -->
+
+<script>
+// ══════════════════════════════════════════
+// ANSWER KEY
+// ══════════════════════════════════════════
+const KEYS = {
+  // Hören
+  h11: 'E', h12: 'C', h13: 'G', h14: 'B', h15: 'F',
+  // Lesen R/F
+  rf1: 'F', rf2: 'R', rf3: 'R', rf4: 'F', rf5: 'R',
+  rf6: 'F', rf7: 'R', rf8: 'R', rf9: 'F', rf10: 'R',
+  // Lesen MC
+  mc1: 'A', mc2: 'A', mc3: 'A', mc4: 'B', mc5: 'B',
+  mc6: 'B', mc7: 'A', mc8: 'A', mc9: 'B', mc10: 'A',
+  // Grammatik
+  g1: 'A', g2: 'A', g3: 'A', g4: 'B', g5: 'B',
+  g6: 'A', g7: 'A', g8: 'A', g9: 'A', g10: 'A',
+  g11: 'A', g12: 'A', g13: 'B', g14: 'A', g15: 'A',
+  // Wortschatz
+  w1: 'A', w2: 'C', w3: 'B', w4: 'A', w5: 'A',
+  w6: 'A', w7: 'A', w8: 'A', w9: 'A', w10: 'A'
+};
+
+// groups for sub-scores
+const GROUPS = {
+  horen:  ['h11','h12','h13','h14','h15'],
+  rf:     ['rf1','rf2','rf3','rf4','rf5','rf6','rf7','rf8','rf9','rf10'],
+  mc:     ['mc1','mc2','mc3','mc4','mc5','mc6','mc7','mc8','mc9','mc10'],
+  gram:   ['g1','g2','g3','g4','g5','g6','g7','g8','g9','g10','g11','g12','g13','g14','g15'],
+  wort:   ['w1','w2','w3','w4','w5','w6','w7','w8','w9','w10']
+};
+
+function getRadioValue(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+
+function getSelectValue(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : null;
+}
+
+function submitTest() {
+  let totalCorrect = 0;
+  const groupScores = { horen: 0, rf: 0, mc: 0, gram: 0, wort: 0 };
+
+  // Helper: get user answer
+  function getUserAnswer(key) {
+    // hören uses selects
+    if (key.startsWith('h')) return getSelectValue(key);
+    return getRadioValue(key);
+  }
+
+  // Evaluate all keys
+  for (const [key, correct] of Object.entries(KEYS)) {
+    const userAns = getUserAnswer(key);
+    const isCorrect = userAns && userAns.toUpperCase() === correct.toUpperCase();
+    if (isCorrect) totalCorrect++;
+
+    // Find which group
+    for (const [grp, keys] of Object.entries(GROUPS)) {
+      if (keys.includes(key)) {
+        if (isCorrect) groupScores[grp]++;
+        break;
+      }
+    }
+
+    // Highlight the question block
+    const blockId = 'qblock-' + key;
+    const block = document.getElementById(blockId);
+
+    // For radio buttons
+    if (!key.startsWith('h')) {
+      const labels = block ? block.querySelectorAll('.opt-label') : [];
+      labels.forEach(label => {
+        const radio = label.querySelector('input[type=radio]');
+        if (!radio) return;
+        label.classList.remove('correct-ans', 'wrong-ans');
+        if (radio.value === correct) {
+          // always mark correct answer green
+          label.classList.add('correct-ans');
+        } else if (radio.checked && radio.value !== correct) {
+          label.classList.add('wrong-ans');
+        }
+      });
+    }
+
+    // For hören selects
+    if (key.startsWith('h')) {
+      const sel = document.getElementById(key);
+      if (sel) {
+        sel.classList.remove('correct-ans', 'wrong-ans');
+        sel.classList.add(isCorrect ? 'correct-ans' : 'wrong-ans');
+      }
+    }
+
+    // Show result badge under question
+    if (block) {
+      // remove old badge
+      const old = block.querySelector('.q-result');
+      if (old) old.remove();
+      const badge = document.createElement('span');
+      badge.className = 'q-result ' + (isCorrect ? 'correct' : 'wrong');
+      badge.textContent = isCorrect ? '✓ Richtig' : '✗ Falsch';
+      block.appendChild(badge);
+    }
+  }
+
+  const total = Object.keys(KEYS).length; // 50
+  const pct = Math.round((totalCorrect / total) * 100);
+
+  // Show results section
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.classList.add('visible');
+
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('score-fraction').textContent = totalCorrect + ' / ' + total + ' Punkte';
+  document.getElementById('sc-horen').textContent = groupScores.horen;
+  document.getElementById('sc-rf').textContent = groupScores.rf;
+  document.getElementById('sc-mc').textContent = groupScores.mc;
+  document.getElementById('sc-gram').textContent = groupScores.gram;
+  document.getElementById('sc-wort').textContent = groupScores.wort;
+
+  // Scroll to results
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Disable all inputs
+  document.querySelectorAll('input[type=radio], select').forEach(el => el.disabled = true);
+  document.querySelector('.btn-submit').disabled = true;
+  document.querySelector('.btn-submit').textContent = '✓ Test abgeschlossen';
+  document.querySelector('.btn-submit').style.background = '#2a6b3c';
+}
+</script>
+</body>
+</html>
